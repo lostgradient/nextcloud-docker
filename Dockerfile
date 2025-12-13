@@ -43,8 +43,10 @@ RUN mkdir -p \
     /var/log/supervisord \
     /var/run/supervisord \
 ;
+# TODO: find a better way to handle this instead of hardcoding it here.
+#       perhaps should take care of it in compose.yml
 # make sure preview app is installed if this line is uncommented
-# echo '*/10 * * * * php -f /var/www/html/occ preview:pre-generate -vvv' >> /var/spool/cron/crontabs/www-data
+echo '*/10 * * * * php -f /var/www/html/occ preview:pre-generate -vvv' >> /var/spool/cron/crontabs/www-data
 
 COPY supervisord.conf /
 COPY z-local.conf /usr/local/etc/php-fpm.d/
