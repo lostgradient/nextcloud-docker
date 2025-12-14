@@ -44,7 +44,7 @@ RUN set -ex; \
 RUN mkdir -p \
     /var/log/supervisord \
     /var/run/supervisord \
-    echo '*/10 * * * * php -f /var/www/html/occ list 2>/dev/null | grep -q "preview:pre-generate" && php -f /var/www/html/occ preview:pre-generate -vvv' >> /var/spool/cron/crontabs/www-data \
+    && echo '*/10 * * * * php -f /var/www/html/occ list 2>/dev/null | grep -q "preview:pre-generate" && php -f /var/www/html/occ preview:pre-generate -vvv' >> /var/spool/cron/crontabs/www-data \
 ;
 
 COPY supervisord.conf /
