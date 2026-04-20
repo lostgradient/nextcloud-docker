@@ -1,4 +1,4 @@
-FROM nextcloud:32-fpm-alpine
+FROM nextcloud:33-fpm-alpine
 
 RUN set -ex; \
     \
@@ -22,12 +22,10 @@ RUN set -ex; \
         bzip2-dev \
     ; \
     \
-    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install \
         bz2 \
-        imap \
     ; \
-    pecl install smbclient; \
+    pecl install imap smbclient; \
     docker-php-ext-enable smbclient; \
     \
     runDeps="$( \
