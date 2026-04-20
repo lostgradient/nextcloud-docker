@@ -6,7 +6,6 @@ RUN set -ex; \
         ffmpeg \
         imagemagick \
         procps \
-        samba-client \
         supervisor \
 #       libreoffice \
     ;
@@ -15,17 +14,12 @@ RUN set -ex; \
     \
     apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
-        openssl-dev \
-        samba-dev \
         bzip2-dev \
     ; \
     \
     docker-php-ext-install \
         bz2 \
     ; \
-    pecl install smbclient; \
-    docker-php-ext-enable smbclient; \
-    \
     runDeps="$( \
         scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
             | tr ',' '\n' \
